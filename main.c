@@ -1,12 +1,11 @@
 #include <curses.h>
+#include "headers/utils.h"
 
 int main()
 {
     initscr();
 
-    // print something to screen
-    printw("Hello World");
-    refresh();
+    draw_window();
 
     getch();
     endwin();
