@@ -5,6 +5,7 @@
 int main()
 {
     initscr();
+    raw();
 
     game_loop();
 

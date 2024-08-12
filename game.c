@@ -9,7 +9,7 @@ void game_loop()
         clear();
         draw_window();
         int c = getch();
-        if(c == 'c')
+        if(c == 'c' || c == 'C')
             break;
     }
 }
