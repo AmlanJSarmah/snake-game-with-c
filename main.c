@@ -1,13 +1,13 @@
 #include <curses.h>
 #include "headers/utils.h"
+#include "headers/game.h"
 
 int main()
 {
     initscr();
 
-    draw_window();
+    game_loop();
 
-    getch();
     endwin();
     return 0;
 }

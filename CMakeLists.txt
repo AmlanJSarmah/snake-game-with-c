@@ -4,6 +4,6 @@ project(Snake-Game)
 find_package(Curses REQUIRED)
 
 include_directories(${PROJECT_SOURCE_DIR}/headers)
-add_executable(${PROJECT_NAME} main.c utils.c)
+add_executable(${PROJECT_NAME} main.c utils.c game.c)
 
 target_link_libraries(${PROJECT_NAME} ${CURSES_LIBRARIES})
