@@ -1,5 +1,6 @@
 #include <curses.h>
 #include "headers/utils.h"
+#include "const.h"
 
 WINDOW* draw_window()
 {
@@ -9,9 +10,15 @@ WINDOW* draw_window()
     width = x/2;
     start_y = y/4;
     start_x = x/4;
-    WINDOW* win = newwin(height, width, start_y, start_x);
+    WINDOW* window = newwin(height, width, start_y, start_x);
     refresh();
-    box(win, 0, 0);
-    wrefresh(win);
-    return win;
+    box(window, 0, 0);
+    wrefresh(window);
+    return window;
+}
+
+void handle_window_resize()
+{
+    clear();
+    win = draw_window();
 }

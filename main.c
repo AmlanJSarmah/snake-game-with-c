@@ -1,8 +1,7 @@
 #include <curses.h>
 #include "headers/utils.h"
 #include "headers/game.h"
-
-#define SNAKE_LENGTH 11
+#include "const.h"
 
 int main()
 {
@@ -12,7 +11,7 @@ int main()
 
     int length_of_snake = 1;
     char snake[SNAKE_LENGTH] = "@";
-    WINDOW* win = draw_window();
+    win = draw_window();
     game_loop();
 
     endwin();
