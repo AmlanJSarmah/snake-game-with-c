@@ -6,8 +6,6 @@ void game_loop()
 {
     while(true)
     {
-        clear();
-        draw_window();
         int c = getch();
         if(c == 'c' || c == 'C')
             break;
