@@ -2,8 +2,8 @@
 #define __CONST__
 
 #include <curses.h>
+#define SNAKE_LENGTH 11
 
 extern WINDOW* win;
-#define SNAKE_LENGTH 11
 
 #endif

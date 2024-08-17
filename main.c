@@ -9,10 +9,10 @@ int main()
     raw();
     noecho();
 
-    int length_of_snake = 1;
-    char snake[SNAKE_LENGTH] = "@";
+    int x = 1;
+    int y = 1;
     win = draw_window();
-    game_loop();
+    game_loop(&x, &y);
 
     endwin();
     return 0;
