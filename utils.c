@@ -1,6 +1,5 @@
 #include <curses.h>
 #include "headers/utils.h"
-#include "const.h"
 
 WINDOW* draw_window()
 {
@@ -15,13 +14,13 @@ WINDOW* draw_window()
     return window;
 }
 
-void handle_window_resize()
+WINDOW* handle_window_resize()
 {
-    clear();
-    win = draw_window();
+    clear();  
+    return draw_window();
 }
 
-void handle_movement(int c, int* x, int* y)
+void handle_movement(WINDOW* win, int c, int* x, int* y)
 {
     int max_x, max_y;
     getmaxyx(win, max_y, max_x);
