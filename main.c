@@ -1,6 +1,7 @@
 #include <curses.h>
 #include "headers/utils.h"
 #include "headers/game.h"
+#include "headers/const.h"
 
 WINDOW* win;
 
@@ -10,10 +11,9 @@ int main()
     raw();
     noecho();
 
-    int x = 1;
-    int y = 1;
+    struct Snake snake = {{1,1}};
     win = draw_window();
-    game_loop(win, &x, &y);
+    game_loop(win, &snake);
 
     endwin();
     return 0;
