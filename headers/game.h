@@ -3,6 +3,6 @@
 
 #include "const.h"
 
-void game_loop(WINDOW* win, struct Snake *snake);
+void game_loop(WINDOW *win, struct Snake *snake);
 
 #endif

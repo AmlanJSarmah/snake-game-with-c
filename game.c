@@ -3,20 +3,18 @@
 #include "headers/utils.h"
 #include "headers/const.h"
 
-void game_loop(WINDOW* win, struct Snake *snake)
+void game_loop(WINDOW *win, struct Snake *snake)
 {
-    while(true)
+    while (true)
     {
         box(win, 0, 0);
-        wrefresh(win);
-        mvwprintw(win, snake->pos_0[1], snake->pos_0[0], "@");
-        wrefresh(win);
+        print_snake(win, snake);
         int c = getch();
-        if(c == 'c' || c == 'C')
+        if (c == 'c' || c == 'C')
             break;
-        if(c == KEY_RESIZE)
+        if (c == KEY_RESIZE)
             win = handle_window_resize();
-        handle_movement(win, c, &snake->pos_0[0], &snake->pos_0[1]);
+        handle_head_movement(win, c, snake);
         wclear(win);
     }
 }

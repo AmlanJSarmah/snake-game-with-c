@@ -3,7 +3,7 @@
 #include "headers/game.h"
 #include "headers/const.h"
 
-WINDOW* win;
+WINDOW *win;
 
 int main()
 {
@@ -11,7 +11,19 @@ int main()
     raw();
     noecho();
 
-    struct Snake snake = {{1,1}};
+    struct Snake snake = {
+        {1, 1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+        {-1, -1},
+    };
+
     win = draw_window();
     game_loop(win, &snake);
 
