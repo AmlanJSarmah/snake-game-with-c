@@ -5,28 +5,29 @@
 
 WINDOW *win;
 
+struct Snake snake = {
+    {1, 1},
+    {-1, -1},
+    {-1, -1},
+    {-1, -1},
+    {-1, -1},
+    {-1, -1},
+    {-1, -1},
+    {-1, -1},
+    {-1, -1},
+    {-1, -1},
+};
+
 int main()
 {
     initscr();
     raw();
     noecho();
 
-    struct Snake snake = {
-        {1, 1},
-        {-1, -1},
-        {-1, -1},
-        {-1, -1},
-        {-1, -1},
-        {-1, -1},
-        {-1, -1},
-        {-1, -1},
-        {-1, -1},
-        {-1, -1},
-    };
-
     win = draw_window();
     game_loop(win, &snake);
 
+    delwin(win);
     endwin();
     return 0;
 }

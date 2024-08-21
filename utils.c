@@ -51,7 +51,10 @@ void handle_head_movement(WINDOW *win, int c, struct Snake *snake)
 
 void print_snake(WINDOW *win, struct Snake *snake)
 {
-    for (int i = 0; i < SNAKE_LENGTH; i++)
+    // We use a reverse for loop to keep our cursor at the snake head
+    // We also check if the snake postiton is valid or not.
+    // -1 means the position isn't used yet. A positve value is a valid position
+    for (int i = SNAKE_LENGTH - 1; i > -1; i--)
     {
         switch (i)
         {
@@ -99,5 +102,4 @@ void print_snake(WINDOW *win, struct Snake *snake)
             break;
         }
     }
-    wrefresh(win);
 }

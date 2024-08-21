@@ -9,6 +9,7 @@ void game_loop(WINDOW *win, struct Snake *snake)
     {
         box(win, 0, 0);
         print_snake(win, snake);
+        wrefresh(win);
         int c = getch();
         if (c == 'c' || c == 'C')
             break;
