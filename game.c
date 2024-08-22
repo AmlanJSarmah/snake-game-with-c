@@ -14,7 +14,11 @@ void game_loop(WINDOW *win, struct Snake *snake)
         if (c == 'c' || c == 'C')
             break;
         if (c == KEY_RESIZE)
+        {
+            delwin(win);
             win = handle_window_resize();
+
+        }
         handle_head_movement(win, c, snake);
         wclear(win);
     }
