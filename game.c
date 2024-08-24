@@ -3,6 +3,18 @@
 #include "headers/utils.h"
 #include "headers/const.h"
 
+void game_over_screen(WINDOW* win)
+{
+    wclear(win);
+    box(win, 0, 0);
+    int y, x;
+    getmaxyx(win, y, x);
+    wmove(win, y/2, x/2-5);
+    wprintw(win, "GAME OVER");
+    wrefresh(win);
+    getch();
+}
+
 void game_loop(WINDOW *win, struct Snake *snake)
 {
     while (true)
@@ -20,6 +32,11 @@ void game_loop(WINDOW *win, struct Snake *snake)
 
         }
         handle_head_movement(win, c, snake);
+        if(collision_detection(win, snake) == 0)
+        {
+            game_over_screen(win);
+            break;
+        }
         wclear(win);
     }
 }

@@ -236,3 +236,81 @@ void print_snake(WINDOW *win, struct Snake *snake)
     }
     wmove(win, snake->pos_0[1], snake->pos_0[0]);
 }
+
+int collision_detection(WINDOW* win, struct Snake* snake)
+{
+    int head_x = snake->pos_0[0];
+    int head_y = snake->pos_0[1];
+
+    for(int i = 1; i < SNAKE_LENGTH; i++)
+    {
+        switch (i) 
+        {
+            case 1:
+                if(head_x == snake->pos_1[0] && head_y == snake->pos_1[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+            case 2:
+                if(head_x == snake->pos_2[0] && head_y == snake->pos_2[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+             case 3:
+                if(head_x == snake->pos_3[0] && head_y == snake->pos_3[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+             case 4:
+                if(head_x == snake->pos_4[0] && head_y == snake->pos_4[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+             case 5:
+                if(head_x == snake->pos_5[0] && head_y == snake->pos_5[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+             case 6:
+                if(head_x == snake->pos_6[0] && head_y == snake->pos_6[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+             case 7:
+                if(head_x == snake->pos_7[0] && head_y == snake->pos_7[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+             case 8:
+                if(head_x == snake->pos_8[0] && head_y == snake->pos_8[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+             case 9:
+                if(head_x == snake->pos_9[0] && head_y == snake->pos_9[1])
+                {
+                    return 0;
+                    break;
+                }
+                break;
+ 
+        }
+    }
+    return -1;
+}
