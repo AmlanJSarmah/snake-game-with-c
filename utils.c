@@ -28,38 +28,50 @@ void handle_head_movement(WINDOW *win, int c, struct Snake *snake)
 
     switch (c)
     {
-        case ('w'):
+        case 'w':
             if (snake->pos_0[1] > 1)
             {
                 int temp_x = snake->pos_0[0];
                 int temp_y = snake->pos_0[1];
+                // if the snake head is moving DOWN and yet the user press W, it cannot move.
+                if (snake->pos_0[1] - 1 == snake->pos_1[1])
+                    break;
                 snake->pos_0[1] = snake->pos_0[1] - 1;
                 move_snake_body(snake, temp_x, temp_y);
             }
             break;
-        case ('s'):
+        case 's':
             if (snake->pos_0[1] < (max_y - 2))
             {
                 int temp_x = snake->pos_0[0];
                 int temp_y = snake->pos_0[1];
+                // if the snake head is moving UP and yet the user press S, it cannot move.
+                if (snake->pos_0[1] + 1 == snake->pos_1[1])
+                    break;
                 snake->pos_0[1] = snake->pos_0[1] + 1;
                 move_snake_body(snake, temp_x, temp_y);
             }
             break;
-        case ('a'):
+        case 'a':
             if (snake->pos_0[0] > 1)
             {
                 int temp_x = snake->pos_0[0];
                 int temp_y = snake->pos_0[1];
+                 // if the snake head is moving LEFT and yet the user press A, it cannot move.
+                if (snake->pos_0[0] - 1 == snake->pos_1[0])
+                    break;
                 snake->pos_0[0] = snake->pos_0[0] - 1;
                 move_snake_body(snake, temp_x, temp_y);
             }
             break;
-        case ('d'):
+        case 'd':
             if (snake->pos_0[0] < (max_x - 2))
             {
                 int temp_x = snake->pos_0[0];
                 int temp_y = snake->pos_0[1];
+                // if the snake head is moving RIGHT and yet the user press D, it cannot move.
+                if (snake->pos_0[0] + 1 == snake->pos_1[0])
+                    break;
                 snake->pos_0[0] = snake->pos_0[0] + 1;
                 move_snake_body(snake, temp_x, temp_y);
             }
