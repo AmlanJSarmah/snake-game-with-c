@@ -246,6 +246,7 @@ void print_snake(WINDOW *win, struct Snake *snake)
                 break;
         }
     }
+    // Moves cursor back to head at the end of rendering
     wmove(win, snake->pos_0[1], snake->pos_0[0]);
 }
 
