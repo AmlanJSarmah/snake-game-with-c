@@ -1,4 +1,6 @@
 #include <curses.h>
+#include <stdlib.h>
+#include <time.h>
 #include "headers/utils.h"
 #include "headers/const.h"
 
@@ -298,4 +300,32 @@ int collision_detection(WINDOW* win, struct Snake* snake)
         }
     }
     return -1;
+}
+
+int print_randoms(int min, int max)
+{
+    int rd_num = rand() % (max - min + 1) + min;
+    return rd_num;
+}
+
+void draw_food(WINDOW *win)
+{
+    int min_x = 1;
+    int min_y = 2;
+    int max_x, max_y;
+    getmaxyx(win, max_y, max_x);
+    int food_x = print_randoms(min_x, max_x);
+    int food_y = print_randoms(min_y, max_y - 2);
+    if (has_colors())
+    {
+        start_color();
+        init_pair(1, COLOR_RED, COLOR_BLACK);
+        attron(COLOR_PAIR(1));
+        wmove(win, food_y, food_x);
+        wprintw(win, "X");
+        attroff(COLOR_PAIR(1));
+        return;
+    }
+    wmove(win, food_y, food_x);
+    wprintw(win, "X");
 }
