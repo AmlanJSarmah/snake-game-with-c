@@ -302,30 +302,30 @@ int collision_detection(WINDOW* win, struct Snake* snake)
     return -1;
 }
 
-int print_randoms(int min, int max)
+int generate_random_number(int min, int max)
 {
     int rd_num = rand() % (max - min + 1) + min;
     return rd_num;
 }
 
-void draw_food(WINDOW *win)
+void draw_food(WINDOW *win, int* is_consume, int*food_x, int* food_y)
 {
-    int min_x = 1;
-    int min_y = 2;
-    int max_x, max_y;
-    getmaxyx(win, max_y, max_x);
-    int food_x = print_randoms(min_x, max_x);
-    int food_y = print_randoms(min_y, max_y - 2);
-    if (has_colors())
+    if(*is_consume == 1)
     {
-        start_color();
-        init_pair(1, COLOR_RED, COLOR_BLACK);
-        attron(COLOR_PAIR(1));
-        wmove(win, food_y, food_x);
-        wprintw(win, "X");
-        attroff(COLOR_PAIR(1));
-        return;
+        int min_x = 1;
+        int min_y = 2;
+        int max_x, max_y;
+        getmaxyx(win, max_y, max_x);
+        *food_x = generate_random_number(min_x, max_x);
+        *food_y = generate_random_number(min_y, max_y - 2);
+        *is_consume = 0;
     }
-    wmove(win, food_y, food_x);
+    wmove(win, *food_y, *food_x);
     wprintw(win, "X");
+}
+
+void check_if_food_eaten(struct Snake* snake, int* is_complete, int* food_x, int* food_y)
+{
+    if(snake->pos_0[0] == *food_x && snake->pos_0[1] == *food_y)
+        *is_complete = 1; 
 }
