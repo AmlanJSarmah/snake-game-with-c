@@ -19,6 +19,7 @@ void game_loop(WINDOW *win, struct Snake *snake)
 {
     int is_consume = 1;
     int food_x, food_y;
+    char direction;
     while (true)
     {
         box(win, 0, 0);
@@ -35,7 +36,7 @@ void game_loop(WINDOW *win, struct Snake *snake)
             delwin(win);
             win = handle_window_resize();
         }
-        handle_head_movement(win, c, snake);
+        handle_head_movement(win, c, snake, &direction);
         if(collision_detection(win, snake) == 0)
         {
             game_over_screen(win);

@@ -23,7 +23,7 @@ WINDOW *handle_window_resize()
     return draw_window();
 }
 
-void handle_head_movement(WINDOW *win, int c, struct Snake *snake)
+void handle_head_movement(WINDOW *win, int c, struct Snake *snake, char* direction)
 {
     int max_x, max_y;
     getmaxyx(win, max_y, max_x);
@@ -31,6 +31,7 @@ void handle_head_movement(WINDOW *win, int c, struct Snake *snake)
     switch (c)
     {
         case 'w':
+            *direction = 'N';
             if (snake->pos_0[1] > 1)
             {
                 int temp_x = snake->pos_0[0];
@@ -43,6 +44,7 @@ void handle_head_movement(WINDOW *win, int c, struct Snake *snake)
             }
             break;
         case 's':
+            *direction = 'S';
             if (snake->pos_0[1] < (max_y - 2))
             {
                 int temp_x = snake->pos_0[0];
@@ -55,6 +57,7 @@ void handle_head_movement(WINDOW *win, int c, struct Snake *snake)
             }
             break;
         case 'a':
+            *direction = 'W';
             if (snake->pos_0[0] > 1)
             {
                 int temp_x = snake->pos_0[0];
@@ -67,6 +70,7 @@ void handle_head_movement(WINDOW *win, int c, struct Snake *snake)
             }
             break;
         case 'd':
+            *direction = 'E';
             if (snake->pos_0[0] < (max_x - 2))
             {
                 int temp_x = snake->pos_0[0];
@@ -324,8 +328,8 @@ void draw_food(WINDOW *win, int* is_consume, int*food_x, int* food_y)
     wprintw(win, "X");
 }
 
-void check_if_food_eaten(struct Snake* snake, int* is_complete, int* food_x, int* food_y)
+void check_if_food_eaten(struct Snake* snake, int* is_consume, int* food_x, int* food_y)
 {
     if(snake->pos_0[0] == *food_x && snake->pos_0[1] == *food_y)
-        *is_complete = 1; 
+        *is_consume = 1; 
 }
