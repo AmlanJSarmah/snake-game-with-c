@@ -18,12 +18,14 @@ void game_over_screen(WINDOW* win)
 void game_loop(WINDOW *win, struct Snake *snake)
 {
     int is_consume = 1;
+    int is_grow = 0;
     int food_x, food_y;
     char direction;
     while (true)
     {
         box(win, 0, 0);
-        check_if_food_eaten(snake, &is_consume, &food_x, &food_y);
+        check_if_food_eaten(snake, &is_consume, &food_x, &food_y, &is_grow);
+        increase_snake_size(snake, &is_grow, direction);
         draw_food(win, &is_consume, &food_x, &food_y);
         print_snake(win, snake);
         wrefresh(win);
