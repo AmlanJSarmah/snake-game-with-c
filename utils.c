@@ -320,7 +320,7 @@ void draw_food(WINDOW *win, int *is_consume, int *food_x, int *food_y)
         int min_y = 2;
         int max_x, max_y;
         getmaxyx(win, max_y, max_x);
-        *food_x = generate_random_number(min_x, max_x);
+        *food_x = generate_random_number(min_x, max_x - 2);
         *food_y = generate_random_number(min_y, max_y - 2);
         *is_consume = 0;
     }
@@ -328,16 +328,17 @@ void draw_food(WINDOW *win, int *is_consume, int *food_x, int *food_y)
     wprintw(win, "X");
 }
 
-void check_if_food_eaten(struct Snake *snake, int *is_consume, int *food_x, int *food_y, int* is_grow)
+void check_if_food_eaten(struct Snake *snake, int *is_consume, int *food_x, int *food_y, int *is_grow, int *score)
 {
     if (snake->pos_0[0] == *food_x && snake->pos_0[1] == *food_y)
     {
         *is_consume = 1;
         *is_grow = 1;
+        *score = *score + 1;
     }
 }
 
-void increase_snake_size(struct Snake *snake, int* is_grow, char direction)
+void increase_snake_size(struct Snake *snake, int *is_grow, char direction)
 {
     if (snake->pos_1[0] == -1 && snake->pos_1[1] == -1 && *is_grow == 1)
     {
@@ -354,7 +355,7 @@ void increase_snake_size(struct Snake *snake, int* is_grow, char direction)
     else if (snake->pos_3[0] == -1 && snake->pos_3[1] == -1 && *is_grow == 1)
     {
         add_snake_element(&snake->pos_3[0], &snake->pos_3[1], &snake->pos_2[0], &snake->pos_2[1], direction);
-        *is_grow = 0;   
+        *is_grow = 0;
     }
 
     else if (snake->pos_4[0] == -1 && snake->pos_4[1] == -1 && *is_grow == 1)
@@ -372,25 +373,25 @@ void increase_snake_size(struct Snake *snake, int* is_grow, char direction)
     else if (snake->pos_6[0] == -1 && snake->pos_6[1] == -1 && *is_grow == 1)
     {
         add_snake_element(&snake->pos_6[0], &snake->pos_6[1], &snake->pos_5[0], &snake->pos_5[1], direction);
-        *is_grow = 0; 
+        *is_grow = 0;
     }
 
     else if (snake->pos_7[0] == -1 && snake->pos_7[1] == -1 && *is_grow == 1)
     {
         add_snake_element(&snake->pos_7[0], &snake->pos_7[1], &snake->pos_6[0], &snake->pos_6[1], direction);
-        *is_grow = 0; 
+        *is_grow = 0;
     }
 
     else if (snake->pos_8[0] == -1 && snake->pos_8[1] == -1 && *is_grow == 1)
     {
         add_snake_element(&snake->pos_8[0], &snake->pos_8[1], &snake->pos_7[0], &snake->pos_7[1], direction);
-        *is_grow = 0; 
+        *is_grow = 0;
     }
 
     else if (snake->pos_9[0] == -1 && snake->pos_9[1] == -1 && *is_grow == 1)
     {
         add_snake_element(&snake->pos_9[0], &snake->pos_9[1], &snake->pos_8[0], &snake->pos_8[1], direction);
-        *is_grow = 0; 
+        *is_grow = 0;
     }
 
     else
@@ -398,27 +399,27 @@ void increase_snake_size(struct Snake *snake, int* is_grow, char direction)
     }
 }
 
-void add_snake_element(int* next_x, int* next_y, int* prev_x, int* prev_y, char direction)
+void add_snake_element(int *next_x, int *next_y, int *prev_x, int *prev_y, char direction)
 {
-    switch(direction)
+    switch (direction)
     {
-        case 'N':
-            *next_x = *prev_x;
-            *next_y = *prev_y - 1;
-            break;
-        case 'S':
-            *next_x = *prev_x;
-            *next_y = *prev_y + 1;
-            break;
-        case 'E':
-            *next_x = *prev_x - 1;
-            *next_y = *prev_y;
-            break;
-        case 'W':
-            *next_x = *prev_x + 1;
-            *next_y = *prev_y;
-            break;
-        default:
-            break;
+    case 'N':
+        *next_x = *prev_x;
+        *next_y = *prev_y - 1;
+        break;
+    case 'S':
+        *next_x = *prev_x;
+        *next_y = *prev_y + 1;
+        break;
+    case 'E':
+        *next_x = *prev_x - 1;
+        *next_y = *prev_y;
+        break;
+    case 'W':
+        *next_x = *prev_x + 1;
+        *next_y = *prev_y;
+        break;
+    default:
+        break;
     }
 }
