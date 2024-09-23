@@ -34,22 +34,31 @@ void print_max_snake_length(struct Snake *snake)
 
 void game_loop(WINDOW *win, struct Snake *snake)
 {
+    // Game Variables
     int is_consume = 1;
     int is_grow = 0;
     int score = 0;
     int food_x, food_y;
     char direction;
+
+    // Event Loop
     while (true)
     {
         box(win, 0, 0);
+
+	// Game Functions
         check_if_food_eaten(snake, &is_consume, &food_x, &food_y, &is_grow, &score);
         increase_snake_size(snake, &is_grow, direction);
         draw_food(win, &is_consume, &food_x, &food_y);
         print_snake(win, snake);
         print_score(score);
         print_max_snake_length(snake);
+
+	// Refreshing the screen after all the calculations
         wrefresh(stdscr);
         wrefresh(win);
+
+	// Key Detection
         int c = getch();
         if (c == 'c' || c == 'C')
             break;
@@ -59,12 +68,16 @@ void game_loop(WINDOW *win, struct Snake *snake)
             delwin(win);
             win = handle_window_resize();
         }
+
+	// Head Moments and Collision Detection
         handle_head_movement(win, c, snake, &direction);
         if (collision_detection(win, snake) == 0)
         {
             game_over_screen(win);
             break;
         }
+
+	//Clear screen after loop iteration to recalculate
         wclear(win);
         wclear(stdscr);
     }
